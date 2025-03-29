@@ -18,7 +18,7 @@ Aplicação web desenvolvida para apoiar alunos em cursos de educação financei
 Democratizar o acesso à educação financeira por meio de uma ferramenta digital gratuita e de fácil uso.
 
 ## 📌 Status
-Em desenvolvimento – MVP previsto para [data].
+Em desenvolvimento – MVP previsto para 28/04/2025.
 
 ## ✨ Contribuições futuras
 - Exportação de relatórios
