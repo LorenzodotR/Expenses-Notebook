@@ -30,8 +30,8 @@ model User {
   country   String
   Expenses  Expense[]
   Cards     Card[]
-  Banks     Bank      @relation(fields: [bankId], references: [id])
-  bankId    String
+  Banks     Bank?      @relation(fields: [bankId], references: [id])
+  bankId    String?
 }
 
 model Card {
