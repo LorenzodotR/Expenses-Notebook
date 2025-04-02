@@ -1,9 +1,10 @@
-import Express from 'express';
+import express from 'express';
 import userRoutes from './routes/userRoutes'
 
-const app = Express();
+const app = express();
 const port = 3030
 
+app.use(express.json());
 app.use('/api', userRoutes)
 
 app.get('/', (req, res) => {
