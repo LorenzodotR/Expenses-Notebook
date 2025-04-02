@@ -1,16 +1,14 @@
-import { z } from 'zod';
+import { Request, Response, NextFunction, ErrorRequestHandler } from 'express';
+import { ZodError, ZodSchema } from 'zod';
 
-
-export const creatUserSchema = z.object({
-    email: z.string().email(),
-    birthDate: z.string().datetime(),
-    name: z.string(),
-    surname: z.string(),
-    password: z.string().min(6),
-    street: z.string(),
-    city: z.string(),
-    state: z.string(),
-    zipCode: z.string(),
-    country: z.string(),
-    bankId: z.string().uuid(),
-})
+export const validate: ErrorRequestHandler = (err, req: Request, res: Response, next: NextFunction) => {
+    try {
+        if (err instanceof ZodError) {
+            res.status(400).json({ error: err });
+        }
+        // req.body = schema.parse(req.body);
+        next();
+    } catch (err: any) {
+        res.status(400).json({ error: err.errors });
+    }
+};

@@ -1,9 +1,12 @@
+import { Request, Response } from "express";
+import { registerUser } from "../services/userService"
+
 export const createUser = async (req: Request, res: Response) => {
     try {
-        // const {name, sureName, passWord } 
-
+        const user = await registerUser(req.body);
+        res.status(201).json(user);
     } catch (error) {
-
+        res.status(500).json({ error: "Informações Invalidas."})
     }
 }
 
