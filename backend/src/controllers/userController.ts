@@ -1,10 +1,10 @@
 import { Request, Response } from "express";
-import { registerUser } from "../services/userService"
+import { deleteUserProfile, getUserInfo, registerUser, updateUserInfo, userLogin } from "../services/userService"
+import { authMiddleware } from "../middlewares/authMiddleware";
 
 export const createUser = async (req: Request, res: Response) => {
     try {
         const user = await registerUser(req.body);
-        console.log(user);
         res.status(201).json(user);
     } catch (error: any) {
         console.error("Erro ao criar usuário:", error);
@@ -14,23 +14,28 @@ export const createUser = async (req: Request, res: Response) => {
 
 export const getUser = async (req: Request, res: Response) => {
     try {
-
-    } catch (error) {
-
+        const user = await getUserInfo(req.body);
+        res.status(200).json(user);
+    } catch (error: any) {
+        console.error("Erro ao buscar informações do usuário:", error);
+        res.status(500).json({ error: "Erro ao buscar informações do usuário", details: error.message });
     }
 }
 
 export const updateUser = async (req: Request, res: Response) => {
     try {
-
-    } catch (error) {
-
+        const user = await updateUserInfo(req.body);
+        res.status(200).json(user);
+    } catch (error: any) {
+        console.error("Erro ao buscar informações do usuário:", error);
+        res.status(500).json({ error: "Erro ao buscar informações do usuário", details: error.message });
     }
 }
 
 export const deleteUser = async (req: Request, res: Response) => {
     try {
-
+        const user = await deleteUserProfile(req.body);
+        res.status(200).json(user);
     } catch (error) {
 
     }
@@ -44,18 +49,19 @@ export const recoverUserPassword = async (req: Request, res: Response) => {
     }
 }
 
-export const userLogin = async (req: Request, res: Response) => {
+
+export const login = async (req: Request, res: Response) => {
     try {
+        const { email, password } = req.body;
 
-    } catch (error) {
+        if (!email && !password)
+            res.status(400).json("Email e Senha Obrigatorios");
 
-    }
-}
+        const token = await userLogin({ email, password })
+        
+        res.status(200).json(token)
 
-export const userLogout = async (req: Request, res: Response) => {
-    try {
-
-    } catch (error) {
-
+    } catch (err: any) {
+        res.status(401).json({ error: err.message });
     }
 }

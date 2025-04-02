@@ -1,4 +1,4 @@
-import { PrismaClient } from '@prisma/client'
+import { PrismaClient } from '@prisma/client';
 
 const prisma = new PrismaClient();
 
@@ -9,7 +9,7 @@ export const createUser = (data: any) => {
 export const getUser = (data: any) => {
     return prisma.user.findUnique({
         where: {
-            id: data
+            id: data.id
         }
     });
 };
@@ -17,7 +17,7 @@ export const getUser = (data: any) => {
 export const updateUser = (data: any) => {
     return prisma.user.update({
         where: {
-            id: data
+            id: data.id
         },
         data: {
             name: data.name,
@@ -36,7 +36,7 @@ export const updateUser = (data: any) => {
 export const deleteUser = (data: any) => {
     return prisma.user.delete({
         where: {
-            id: data
+            id: data.id
         },
     });
 };

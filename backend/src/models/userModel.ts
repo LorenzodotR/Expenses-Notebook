@@ -11,5 +11,9 @@ export const creatUserSchema = z.object({
     state: z.string(),
     zipCode: z.string(),
     country: z.string(),
-    bankId: z.string().uuid(),
+})
+
+export const userLoginSchema = z.object({
+    email: z.string().email(),
+    password: z.string().min(6),
 })
