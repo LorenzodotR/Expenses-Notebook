@@ -6,8 +6,9 @@ export const createUser = async (req: Request, res: Response) => {
         const user = await registerUser(req.body);
         console.log(user);
         res.status(201).json(user);
-    } catch (error) {
-        res.status(500).json({ error: "Informações Invalidas." })
+    } catch (error: any) {
+        console.error("Erro ao criar usuário:", error);
+        res.status(500).json({ error: "Erro ao criar usuário", details: error.message });
     }
 }
 

@@ -18,7 +18,7 @@ enum CategoryType {
 
 model User {
   id        String    @id @default(uuid())
-  email     String
+  email     String    @unique
   birthDate String
   name      String
   sureName  String
@@ -30,7 +30,7 @@ model User {
   country   String
   Expenses  Expense[]
   Cards     Card[]
-  Banks     Bank?      @relation(fields: [bankId], references: [id])
+  Banks     Bank?     @relation(fields: [bankId], references: [id])
   bankId    String?
 }
 
