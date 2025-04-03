@@ -1,7 +1,7 @@
 import { Router } from "express";
-import { createUser, deleteUser, getUser, login, updateUser } from "../controllers/userController";
-import { validate } from "../middlewares/validationMiddleware";
-import { creatUserSchema } from "../models/userModel";
+import { createUser, deleteUser, getUser, login, logout, updateUser } from "./controller";
+import { validate } from "../../middlewares/validationMiddleware";
+import { creatUserSchema } from "./schema";
 
 const router = Router();
 
@@ -11,5 +11,6 @@ router.post('/register', validate(creatUserSchema), createUser);
 router.post('/editaProfile', updateUser);
 
 router.post('/login', login);
+router.post('/logout', logout)
 
 export default router;

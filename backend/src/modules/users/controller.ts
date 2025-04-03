@@ -1,6 +1,5 @@
 import { Request, Response } from "express";
-import { deleteUserProfile, getUserInfo, registerUser, updateUserInfo, userLogin } from "../services/userService"
-import { authMiddleware } from "../middlewares/authMiddleware";
+import { registerUser, getUserInfo, updateUserInfo, deleteUserProfile, userLogin } from "./service";
 
 export const createUser = async (req: Request, res: Response) => {
     try {
@@ -61,7 +60,15 @@ export const login = async (req: Request, res: Response) => {
         
         res.status(200).json(token)
 
-    } catch (err: any) {
-        res.status(401).json({ error: err.message });
+    } catch (error: any) {
+        res.status(401).json({ error: error.message });
+    }
+}
+
+export const logout = async (req: Request, res: Response) => {
+    try {
+        
+    } catch (error: any) {
+        res.status(401).json({ error: error.message });
     }
 }

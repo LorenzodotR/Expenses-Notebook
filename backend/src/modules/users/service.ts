@@ -1,8 +1,8 @@
 import { compare } from "bcryptjs";
-import { createUser, deleteUser, getUser, updateUser } from "../repository/userRepositories";
-import { hashPassword } from "../utils/hash"
 import { PrismaClient } from '@prisma/client';
 import jwt from 'jsonwebtoken';
+import { hashPassword } from "../../utils/hash";
+import { createUser, getUser, updateUser, deleteUser } from "./repository";
 
 const prisma = new PrismaClient();
 
@@ -35,11 +35,8 @@ export const userLogin = async (data: any) => {
     const token = jwt.sign(
         { id: user!.id, email: user!.email },
         process.env.JWT_SECRET as string,
-        { expiresIn: '1d' }
+        { expiresIn: '1h' }
     )
 
     return token;
-}
-
-export const userLogout = async (req: Request, res: Response) => {
 }
