@@ -8,7 +8,7 @@ const router = Router();
 router.get('/profile', getById);
 router.post('/delete', deleteProfile);
 router.post('/register', validate(creatUserSchema), create);
-router.post('/editaProfile', update);
+router.put('/updateProfile', update);
 
 router.post('/login', login);
 
