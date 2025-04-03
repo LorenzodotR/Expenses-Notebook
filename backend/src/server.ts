@@ -1,5 +1,5 @@
 import express from 'express';
-import userRoutes from './routes/userRoutes';
+import userRoutes from './modules/users/routes';
 import { auth } from 'express-oauth2-jwt-bearer';
 
 const app = express();

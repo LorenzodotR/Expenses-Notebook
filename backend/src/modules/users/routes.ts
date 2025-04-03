@@ -1,16 +1,15 @@
 import { Router } from "express";
-import { createUser, deleteUser, getUser, login, logout, updateUser } from "./controller";
+import { create, deleteProfile, getById, login, update } from "./controller";
 import { validate } from "../../middlewares/validationMiddleware";
 import { creatUserSchema } from "./schema";
 
 const router = Router();
 
-router.get('/profile', getUser);
-router.post('/delete', deleteUser);
-router.post('/register', validate(creatUserSchema), createUser);
-router.post('/editaProfile', updateUser);
+router.get('/profile', getById);
+router.post('/delete', deleteProfile);
+router.post('/register', validate(creatUserSchema), create);
+router.post('/editaProfile', update);
 
 router.post('/login', login);
-router.post('/logout', logout)
 
 export default router;

@@ -2,25 +2,25 @@ import { compare } from "bcryptjs";
 import { PrismaClient } from '@prisma/client';
 import jwt from 'jsonwebtoken';
 import { hashPassword } from "../../utils/hash";
-import { createUser, getUser, updateUser, deleteUser } from "./repository";
+import { create, findById, update, deleteProfile } from "./repository";
 
 const prisma = new PrismaClient();
 
-export const registerUser = async (data: any) => {
+export const createUser = async (data: any) => {
     const hashedPassword = await hashPassword(data.password);
-    return createUser({ ...data, password: hashedPassword });
+    return create({ ...data, password: hashedPassword });
 }
 
-export const getUserInfo = async (data: any) => {
-    return getUser({ ...data });
+export const getUserById = async (data: any) => {
+    return findById({ ...data });
 }
 
-export const updateUserInfo = async (data: any) => {
-    return updateUser({ ...data });
+export const updateUser = async (data: any) => {
+    return update({ ...data });
 }
 
-export const deleteUserProfile = async (data: any) => {
-    return deleteUser({ ...data });
+export const deleteUser = async (data: any) => {
+    return deleteProfile({ ...data });
 }
 
 export const userLogin = async (data: any) => {
