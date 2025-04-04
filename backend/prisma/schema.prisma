@@ -39,9 +39,13 @@ model Bank {
 }
 
 model Card {
-  id     String @id @default(uuid())
-  bankId String
-  userId String
+  id             String    @id @default(uuid())
+  cardName       String
+  cardLimit      Decimal?  @db.Decimal(10, 2)
+  expirationDate DateTime?
+  cardType       CardType
+  bankId         String
+  userId         String
 
   Bank         Bank           @relation(fields: [bankId], references: [id])
   User         User           @relation(fields: [userId], references: [id])
@@ -81,4 +85,9 @@ enum CategoryType {
   Bills
   Entretainment
   Trips
+}
+
+enum CardType {
+  Credito
+  Debito
 }

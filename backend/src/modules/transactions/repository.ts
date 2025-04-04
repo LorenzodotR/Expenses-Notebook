@@ -10,6 +10,8 @@ export const create = (data: any) => {
             categoryType: data.categoryType,
             transactionType: data.transactionType,
             expendDate: data.expendDate,
+            cardId: data.cardId,
+            bankId: data.bankId,
             userId: data.id         
         }
     })
