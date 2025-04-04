@@ -3,11 +3,12 @@ import { PrismaClient } from '@prisma/client';
 const prisma = new PrismaClient();
 
 export const create = (data: any) => {
-    return prisma.expense.create({
+    return prisma.transactions.create({
         data: {
-            amount: data.amount,
+            value: data.value,
             description: data.description,
-            category: data.category,
+            categoryType: data.categoryType,
+            transactionType: data.transactionType,
             expendDate: data.expendDate,
             userId: data.id         
         }
@@ -15,7 +16,7 @@ export const create = (data: any) => {
 };
 
 export const findById = (data: any) => {
-    return prisma.expense.findUnique({
+    return prisma.transactions.findUnique({
         where: {
             id: data.id
         }
@@ -23,7 +24,7 @@ export const findById = (data: any) => {
 };
 
 export const findAll = (data: any) => {
-    return prisma.expense.findMany({
+    return prisma.transactions.findMany({
         where: {
             userId: data.id,
         }
@@ -31,21 +32,21 @@ export const findAll = (data: any) => {
 }
 
 export const update = (data: any) => {
-    return prisma.expense.update({
+    return prisma.transactions.update({
         where: {
             id: data.id
         },
         data: {
-            amount: data.amount,
+            value: data.value,
             description: data.description,
-            category: data.category,
+            categoryType: data.categoryType,
             expendDate: data.expendDate
         }
     })
 }
 
 export const deleteMyExpense = (data: any) => {
-    return prisma.expense.delete({
+    return prisma.transactions.delete({
         where: {
             id: data.id
         }

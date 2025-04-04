@@ -19,17 +19,7 @@ export const update = (data: any) => {
         where: {
             id: data.id
         },
-        data: {
-            name: data.name,
-            sureName: data.surName,
-            email: data.email,
-            birthDate: data.birthDate,
-            state: data.state,
-            street: data.street,
-            city: data.city,
-            zipCode: data.zipCode,
-            country: data.country
-        }
+          data: {}
     });
 };
 

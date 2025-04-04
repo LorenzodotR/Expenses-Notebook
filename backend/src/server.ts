@@ -1,6 +1,7 @@
 import express from 'express';
 import usersRoutes from './modules/users/routes';
-import expenseRoutes from './modules/expenses/routes';
+import banksRoutes from './modules/banks/routes';
+import expenseRoutes from './modules/transactions/routes';
 import { auth } from 'express-oauth2-jwt-bearer';
 
 const app = express();
@@ -19,8 +20,9 @@ const jwtCheck = auth({
 // });
 
 app.use(express.json());
-app.use('/user', usersRoutes)
-app.use('/expense', expenseRoutes)
+app.use('/user', usersRoutes);
+app.use('/banks', banksRoutes);
+app.use('/expense', expenseRoutes);
 
 app.get('/', (req, res) => {
     res.send("Caderno de Apontamentos");

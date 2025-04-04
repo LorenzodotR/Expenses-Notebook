@@ -8,65 +8,65 @@ datasource db {
 }
 
 model User {
-  id        String         @id @default(uuid())
-  email     String         @unique
+  id        String  @id @default(uuid())
+  email     String  @unique
   birthDate String
   name      String
   sureName  String
   password  String
-  address   Address[]
-  bankId    String?
+  street    String
+  city      String
+  state     String
+  zipCode   String
+  country   String
   avatarUrl String?
-  Cards     Card[]
-  Expenses  Transactions[]
-  Banks     Bank?          @relation(fields: [bankId], references: [id])
-}
 
-model Address {
-  id      String @id @default(uuid())
-  userId  String
-  street  String
-  city    String
-  state   String
-  zipCode String
-  country String
-  user    User   @relation(fields: [userId], references: [id])
-}
-
-model Card {
-  id       String         @id @default(uuid())
-  Transactions Transactions[]
-  userId   String?
-  User     User?          @relation(fields: [userId], references: [id])
-  Bank     Bank?          @relation(fields: [bankId], references: [id])
-  bankId   String?
-}
-
-model Bank {
-  id           String         @id @default(uuid())
-  ispb         Int
-  balance      Decimal
-  agency       Int
-  User         User[]
+  Banks        Bank[]
   Cards        Card[]
   Transactions Transactions[]
 }
 
+model Bank {
+  id      String  @id @default(uuid())
+  ispb    Int
+  balance Decimal @db.Decimal(10, 2)
+  agency  Int
+  userId  String
+
+  user         User           @relation(fields: [userId], references: [id])
+  Cards        Card[]
+  Transactions Transactions[]
+}
+
+model Card {
+  id     String @id @default(uuid())
+  bankId String
+  userId String
+
+  Bank         Bank           @relation(fields: [bankId], references: [id])
+  User         User           @relation(fields: [userId], references: [id])
+  Transactions Transactions[]
+}
+
 model Transactions {
-  id              String          @id @default(uuid())
-  value           Decimal
-  description     String
-  expendDate      DateTime
-  createdAt       DateTime        @default(now())
-  updatedAt       DateTime        @updatedAt
-  userId          String
-  categoryType    CategoryType?
+  id          String   @id @default(uuid())
+  value       Decimal  @db.Decimal(10, 2)
+  description String
+  expendDate  DateTime
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+
   transactionType TransactionType
-  user            User            @relation(fields: [userId], references: [id])
-  card            Card?           @relation(fields: [cardId], references: [id])
-  cardId          String?
-  Bank            Bank?           @relation(fields: [bankId], references: [id])
-  bankId          String?
+  categoryType    CategoryType?
+
+  userId String
+  user   User   @relation(fields: [userId], references: [id])
+
+  cardId String?
+  card   Card?   @relation(fields: [cardId], references: [id])
+
+  bankId String?
+  Bank   Bank?   @relation(fields: [bankId], references: [id])
 }
 
 enum TransactionType {
