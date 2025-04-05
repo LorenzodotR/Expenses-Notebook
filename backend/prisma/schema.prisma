@@ -67,7 +67,7 @@ model Transactions {
   user   User   @relation(fields: [userId], references: [id])
 
   cardId String?
-  card   Card?   @relation(fields: [cardId], references: [id])
+  Card   Card?   @relation(fields: [cardId], references: [id])
 
   bankId String?
   Bank   Bank?   @relation(fields: [bankId], references: [id])

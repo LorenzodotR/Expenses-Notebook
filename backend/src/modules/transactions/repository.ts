@@ -21,6 +21,9 @@ export const findById = (data: any) => {
     return prisma.transactions.findUnique({
         where: {
             id: data.id
+        },
+        include: {
+            Card: true
         }
     });
 };

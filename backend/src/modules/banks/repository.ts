@@ -17,6 +17,10 @@ export const findById = (data: any) => {
     return prisma.bank.findUnique({
         where: {
             id: data.id
+        },
+        include: {
+            Transactions: true,
+            Cards: true,
         }
     });
 };

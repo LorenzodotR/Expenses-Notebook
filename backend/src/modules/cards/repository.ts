@@ -47,15 +47,3 @@ export const deleteCard = (data: any) => {
         }
     })
 }
-
-export const getCardTransactions = (data: any) => {
-    const card = prisma.card.findUnique({
-        where: {
-            id: data.id
-        }
-    });
-    const transactions = card.Transactions
-
-
-    return transactions;
-}
