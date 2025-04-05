@@ -1,18 +1,28 @@
-import { Request, Response, NextFunction } from 'express';
-import jwt from 'jsonwebtoken';
+import { Request, Response, NextFunction, RequestHandler } from 'express';
+import jwt, { JwtPayload } from 'jsonwebtoken';
 
-export const authMiddleware = (req: Request, res: Response, next: NextFunction) => {
+interface AuthenticatedRequest extends Request {
+    user?: string | JwtPayload;
+}
+
+export const authMiddleware: RequestHandler = (req: any, res: any, next) => {
     const authHeader = req.headers.authorization;
 
-    if (!authHeader) return res.status(401).json({ error: 'Token ausente' });
+    if (!authHeader) {
+        return res.status(401).json({ error: 'Token ausente' });
+    }
 
-    const token = authHeader.split(' ')[1];
+    const [scheme, token] = authHeader.split(' ');
+
+    if (scheme !== 'Bearer' || !token) {
+        return res.status(401).json({ error: 'Formato de token inválido' });
+    }
 
     try {
         const decoded = jwt.verify(token, process.env.JWT_SECRET as string);
-        (req as any).user = decoded;
+        (req as AuthenticatedRequest).user = decoded;
         next();
     } catch (err) {
-        return res.status(401).json({ error: 'Token inválido' });
+        return res.status(401).json({ error: 'Token inválido ou expirado' });
     }
 };
