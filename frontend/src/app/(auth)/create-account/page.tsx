@@ -1,9 +1,93 @@
-import { CreateAccountForm } from "@/components/user-forms/account-form";
+"use client";
+
+import { useState } from "react";
+import { Button } from "@/components/ui/button";
+import { Input } from "@/components/ui/input";
+import { Label } from "@/components/ui/label";
+// import { useRouter } from "next/navigation";
 
 export default function CreateAccountPage() {
+    // const router = useRouter();
+    const [showPassword, setShowPassword] = useState(false);
+
+    const [form, setForm] = useState({
+        name: "",
+        email: "",
+        password: "",
+    });
+
+    const handleChange = (field: string, value: string) => {
+        setForm((prev) => ({ ...prev, [field]: value }));
+    };
+
     return (
-        <div>
-            <CreateAccountForm />
+        <div className="min-h-screen flex items-center justify-center px-4">
+            <div className="w-full max-w-sm space-y-6">
+                {/* Voltar */}
+                {/* <button onClick={() => router.back()} className="text-left">
+                    <ArrowLeft className="w-5 h-5 text-gray-700" />
+                </button> */}
+
+                {/* Título */}
+                <h1 className="text-center text-2xl font-medium text-gray-800">Cadastro</h1>
+
+                {/* Formulário */}
+                <form className="space-y-4">
+                    <div>
+                        <Label className="text-gray-600 pb-1">Nome completo</Label>
+                        <Input
+                            type="text"
+                            value={form.name}
+                            onChange={(e) => handleChange("name", e.target.value)}
+                            className="rounded-md border-gray-400"
+                        />
+                    </div>
+
+                    <div>
+                        <Label className="text-gray-600 pb-1">E-mail</Label>
+                        <Input
+                            type="email"
+                            value={form.email}
+                            onChange={(e) => handleChange("email", e.target.value)}
+                            className="rounded-md border-gray-400"
+                        />
+                    </div>
+
+                    <div className="relative">
+                        <Label className="text-gray-600 pb-1">Senha</Label>
+                        <Input
+                            type={showPassword ? "text" : "password"}
+                            value={form.password}
+                            onChange={(e) => handleChange("password", e.target.value)}
+                            className="rounded-md border-gray-400 pr-10"
+                        />
+                        <button
+                            type="button"
+                            onClick={() => setShowPassword(!showPassword)}
+                            className="absolute right-2 top-8 text-gray-500"
+                        ></button>
+                    </div>
+
+                    <Button className="w-full bg-[#009FC2] hover:bg-[#0086a6] text-white rounded-md">ENTRAR</Button>
+                </form>
+
+                {/* Divider */}
+                {/* <div className="flex items-center justify-center text-sm text-gray-500 gap-2">
+                    <div className="flex-grow border-t" />
+                    <span>Ou entre com</span>
+                    <div className="flex-grow border-t" />
+                </div> */}
+
+                {/* Social buttons */}
+                {/* <div className="space-y-2">
+                    <Button variant="outline" className="w-full border-gray-400 text-gray-700 rounded-md">
+                        Entrar Com Facebook
+                    </Button>
+                    <Button variant="outline" className="w-full border-gray-400 text-gray-700 rounded-md">
+                        Entrar Com Google
+                    </Button>
+                </div> */}
+            </div>
         </div>
     );
 }

@@ -28,12 +28,7 @@ export function CreateAccountForm() {
                     <TabsTrigger value="personal" disabled>
                         Pessoal
                     </TabsTrigger>
-                    <TabsTrigger value="address" disabled>
-                        Endereço
-                    </TabsTrigger>
-                    <TabsTrigger value="review" disabled>
-                        Revisar
-                    </TabsTrigger>
+                    
                 </TabsList>
 
                 {/* Etapa 1 - Pessoal */}
