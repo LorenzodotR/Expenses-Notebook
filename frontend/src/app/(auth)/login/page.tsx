@@ -5,8 +5,11 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import Link from "next/link";
+import { ArrowLeft } from "lucide-react";
+import { useRouter } from "next/navigation";
 
 export default function LoginPage() {
+    const router = useRouter();
     const [showPassword, setShowPassword] = useState(false);
 
     const [form, setForm] = useState({
@@ -21,6 +24,11 @@ export default function LoginPage() {
     return (
         <div className="min-h-screen flex items-center justify-center px-4">
             <div className="w-full max-w-sm space-y-6">
+                {/* Voltar */}
+                <button onClick={() => router.push("/")} className="text-left">
+                    <ArrowLeft className="w-5 h-5 text-gray-700" />
+                </button>
+                
                 {/* Título */}
                 <h1 className="text-center text-2xl font-medium text-gray-800">Login</h1>
 
@@ -56,6 +64,7 @@ export default function LoginPage() {
                             <Link href="/">Entrar</Link>
                         </Button>
                     </div>
+                    <Link href="/create-account" className="w-full justify-center flex">Não tem uma conta? Crie uma aqui</Link>
                 </form>
                 {/* Divider */}
                 <div className="flex items-center justify-center text-sm text-gray-500 gap-2">

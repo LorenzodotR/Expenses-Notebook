@@ -4,9 +4,11 @@ import { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
-import Link from "next/link";
+import { ArrowLeft } from "lucide-react";
+import { useRouter } from "next/navigation";
 
 export default function CreateAccountPage() {
+    const router = useRouter();
     const [showPassword, setShowPassword] = useState(false);
 
     const [form, setForm] = useState({
@@ -22,6 +24,11 @@ export default function CreateAccountPage() {
     return (
         <div className="min-h-screen flex items-center justify-center px-4">
             <div className="w-full max-w-sm space-y-6">
+                {/* Voltar */}
+                <button onClick={() => router.push("/")} className="text-left">
+                    <ArrowLeft className="w-5 h-5 text-gray-700" />
+                </button>
+
                 <h1 className="text-center text-2xl font-medium text-gray-800">Cadastro</h1>
 
                 <form className="space-y-4">
@@ -61,9 +68,9 @@ export default function CreateAccountPage() {
                     </div>
 
                     <div className="flex justify-center gap-4 px-4">
-                        <Button asChild className="w-32 bg-[#009FC2] hover:bg-[#0086a6] text-white rounded-md">
+                        {/* <Button asChild className="w-32 bg-[#009FC2] hover:bg-[#0086a6] text-white rounded-md">
                             <Link href="/">Voltar</Link>
-                        </Button>
+                        </Button> */}
 
                         <Button className="w-32 bg-[#009FC2] hover:bg-[#0086a6] text-white rounded-md">
                             Criar Conta
