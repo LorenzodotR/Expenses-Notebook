@@ -4,10 +4,9 @@ import { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
-// import { useRouter } from "next/navigation";
+import Link from "next/link";
 
 export default function CreateAccountPage() {
-    // const router = useRouter();
     const [showPassword, setShowPassword] = useState(false);
 
     const [form, setForm] = useState({
@@ -23,15 +22,8 @@ export default function CreateAccountPage() {
     return (
         <div className="min-h-screen flex items-center justify-center px-4">
             <div className="w-full max-w-sm space-y-6">
-                {/* Voltar */}
-                {/* <button onClick={() => router.back()} className="text-left">
-                    <ArrowLeft className="w-5 h-5 text-gray-700" />
-                </button> */}
-
-                {/* Título */}
                 <h1 className="text-center text-2xl font-medium text-gray-800">Cadastro</h1>
 
-                {/* Formulário */}
                 <form className="space-y-4">
                     <div>
                         <Label className="text-gray-600 pb-1">Nome completo</Label>
@@ -68,25 +60,32 @@ export default function CreateAccountPage() {
                         ></button>
                     </div>
 
-                    <Button className="w-full bg-[#009FC2] hover:bg-[#0086a6] text-white rounded-md">ENTRAR</Button>
+                    <div className="flex justify-center gap-4 px-4">
+                        <Button asChild className="w-32 bg-[#009FC2] hover:bg-[#0086a6] text-white rounded-md">
+                            <Link href="/">Voltar</Link>
+                        </Button>
+
+                        <Button className="w-32 bg-[#009FC2] hover:bg-[#0086a6] text-white rounded-md">
+                            Criar Conta
+                        </Button>
+                    </div>
                 </form>
 
                 {/* Divider */}
-                {/* <div className="flex items-center justify-center text-sm text-gray-500 gap-2">
+                <div className="flex items-center justify-center text-sm text-gray-500 gap-2">
                     <div className="flex-grow border-t" />
                     <span>Ou entre com</span>
                     <div className="flex-grow border-t" />
-                </div> */}
+                </div>
 
-                {/* Social buttons */}
-                {/* <div className="space-y-2">
+                <div className="space-y-2">
                     <Button variant="outline" className="w-full border-gray-400 text-gray-700 rounded-md">
                         Entrar Com Facebook
                     </Button>
                     <Button variant="outline" className="w-full border-gray-400 text-gray-700 rounded-md">
                         Entrar Com Google
                     </Button>
-                </div> */}
+                </div>
             </div>
         </div>
     );
