@@ -7,7 +7,7 @@ import { Label } from "@/components/ui/label";
 import { ArrowLeft } from "lucide-react";
 import { useRouter } from "next/navigation";
 import Image from "next/image";
-import Logo from "../../../../public/meu_bolso.svg";
+import Logo from "../../public/meu_bolso.svg";
 
 export default function CreateAccountPage() {
     const router = useRouter();
@@ -23,31 +23,22 @@ export default function CreateAccountPage() {
         setForm((prev) => ({ ...prev, [field]: value }));
     };
 
-    const handleSubmit = async (e: React.FormEvent) => {
-        e.preventDefault();
-        try {            
-            router.push("/user/profile");
-        } catch (error) {
-            console.error("Erro ao Criar Conta:", error);
-            alert("Falha ao Criar Conta. Verifique suas informações.");
-        }
-    };
-
     return (
-        <div className="min-h-screen flex flex-col px-4 pt-6">
+        <div className="min-h-screen flex items-center justify-center px-4">
             <div className="w-full max-w-sm space-y-6">
-                {/* Seta de voltar */}
+                {/* Voltar */}
                 <button onClick={() => router.push("/")} className="text-left">
                     <ArrowLeft className="w-5 h-5 text-gray-700" />
                 </button>
 
-                {/* Logo centralizada */}
-                <div className="flex justify-center mb-8">
-                    <Image src={Logo} width={140} height={140} alt="Logo Meu Bolso" className="object-contain" />
-                </div>
                 <h1 className="text-center text-2xl font-medium text-gray-800">Cadastro</h1>
 
-                <form className="space-y-4" onSubmit={handleSubmit}>
+                {/* Logo */}
+                <div className="flex flex-col items-center gap-2">
+                    <Image src={Logo} width={250} height={250} alt="Picture of the author" />
+                </div>
+
+                <form className="space-y-4">
                     <div>
                         <Label className="text-gray-600 pb-1">Nome completo</Label>
                         <Input
@@ -84,10 +75,6 @@ export default function CreateAccountPage() {
                     </div>
 
                     <div className="flex justify-center gap-4 px-4">
-                        {/* <Button asChild className="w-32 bg-[#009FC2] hover:bg-[#0086a6] text-white rounded-md">
-                            <Link href="/">Voltar</Link>
-                        </Button> */}
-
                         <Button className="w-32 bg-[#009FC2] hover:bg-[#0086a6] text-white rounded-md">
                             Criar Conta
                         </Button>

@@ -1,6 +1,7 @@
 import { Button } from "@/components/ui/button";
-import { Wallet } from "lucide-react";
 import Link from "next/link";
+import Image from "next/image";
+import Logo from "../../public/meu_bolso.svg";
 
 export default function Home() {
     return (
@@ -9,12 +10,11 @@ export default function Home() {
                 <div className="flex flex-col items-center gap-8">
                     {/* Logo */}
                     <div className="flex flex-col items-center gap-2">
-                        <Wallet size={64} className="text-[#009FC2]" />
-                        <h1 className="text-3xl font-semibold text-gray-800">Meu bolso</h1>
+                        <Image src={Logo} width={500} height={500} alt="Picture of the author" />
                     </div>
 
                     {/* Botões */}
-                    <div className="flex gap-4">
+                    <div className="flex gap-20">
                         <Button asChild className="w-32 bg-[#009FC2] text-white hover:bg-[#0086a6] rounded-md">
                             <Link href="/create-account">Cadastrar</Link>
                         </Button>
