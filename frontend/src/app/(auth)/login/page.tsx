@@ -33,7 +33,6 @@ export default function LoginPage() {
                 },
                 body: JSON.stringify(form),
             });
-            console.log(response);
 
             if (!response.ok) {
                 throw new Error("Erro ao fazer login");

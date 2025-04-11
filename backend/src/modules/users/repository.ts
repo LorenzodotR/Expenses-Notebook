@@ -22,6 +22,7 @@ export const update = (data: any) => {
         data: {
             name: data.name,
             birthDate: data.birthDate,
+            cpf: data.cpf,
             sureName: data.sureName,
             street: data.street,
             city: data.city,

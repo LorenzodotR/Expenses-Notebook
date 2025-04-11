@@ -25,8 +25,11 @@ export default function CreateAccountPage() {
 
     const handleSubmit = async (e: React.FormEvent) => {
         e.preventDefault();
-        try {            
-            router.push("/user/profile");
+        try {
+            const preSingUp = JSON.stringify(form);
+            localStorage.setItem("preSingUp", preSingUp);
+
+            router.push("/create-account-address");
         } catch (error) {
             console.error("Erro ao Criar Conta:", error);
             alert("Falha ao Criar Conta. Verifique suas informações.");
